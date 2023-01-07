@@ -1,3 +1,5 @@
+import traceback
+
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
@@ -25,7 +27,7 @@ def get_current_user(
     try:
         payload = jwt.decode(token, settings.JWT_SECRET_KEY, [settings.JWT_ALGORITHM])
     except Exception as e:
-        print(e)
+        print(e, traceback.format_exc())
         raise HTTPException(
             status_code=403,
             detail="Could not validate credentials",
