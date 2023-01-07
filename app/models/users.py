@@ -1,7 +1,11 @@
-from app.db.base_class import Base
-from sqlalchemy import Boolean, Column, Integer, String, TIMESTAMP
-from sqlalchemy.orm import relationship
 from datetime import datetime
+
+from sqlalchemy import TIMESTAMP, Boolean, Column, Integer, String
+from sqlalchemy.orm import relationship
+
+from app.db.base_class import Base
+from app.models.blog import Blog, BlogComment  # noqa
+
 
 class User(Base):
     id = Column(Integer, primary_key=True, index=True)
@@ -14,4 +18,4 @@ class User(Base):
 
     # relationships
     blogs = relationship("Blog", back_populates="posted_by")
-    comments = relationship("BlogComment", back_populates="blog")
+    comments = relationship("BlogComment", back_populates="user")
