@@ -22,9 +22,3 @@ class CreateUserSchema(UserBaseSchema):
 
 class UpdateUserSchema(UserBaseSchema):
     pass
-
-
-class UserLoginSchema(OrmBaseModel):
-    email:EmailStr
-    password:str
-
